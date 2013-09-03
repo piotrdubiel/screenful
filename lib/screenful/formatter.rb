@@ -16,7 +16,7 @@ module Screenful
       if @storyboard != ""
         @storyboard << image_separator 
       end
-      @storyboard << %{<img id="#{id}" style="margin-right: 30px; max-width: 30%; height: 400px; display: inline-block;" src="#{src}">}    else
+      @storyboard << %{<img id="#{id}" style="margin-right: 10px; width: 180px; display: inline-block;" src="#{src}">}
     end
 
     def after_steps(steps)
