@@ -1,0 +1,20 @@
+# -*- encoding: utf-8 -*-
+$:.push File.expand_path("../lib", __FILE__)
+require "screenful/version"
+
+Gem::Specification.new do |s|
+  s.name				= "screenful"
+  s.version				= Screenful::VERSION
+  s.platform			= Gem::Platform::RUBY
+  s.authors				= ["Piotr Dubiel"]
+  s.summary				= %q{Screenful is cucumber formatter for calabash that allows intercepting touches}
+  s.add_dependency "calabash-cucumber"
+  s.add_dependency "rmagick"
+  s.files 				=  ["lib/screenful.rb", 
+                      "lib/screenful/formatter.rb",
+                      "lib/screenful/version.rb",
+                      "lib/screenful/action_interceptor.rb",
+                      "lib/screenful/screenshot_helper.rb"]
+
+  s.require_paths = ["lib"]
+end
