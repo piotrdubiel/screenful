@@ -13,7 +13,9 @@ Gem::Specification.new do |s|
   s.files 				=  ["lib/screenful.rb", 
                       "lib/screenful/formatter.rb",
                       "lib/screenful/version.rb",
-                      "lib/screenful/action_interceptor.rb",
+                      "lib/screenful/intercept.rb",
+                      "lib/screenful/interceptors/android.rb",
+                      "lib/screenful/interceptors/ios.rb",
                       "lib/screenful/screenshot_helper.rb"]
 
   s.require_paths = ["lib"]
