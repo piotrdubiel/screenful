@@ -41,6 +41,13 @@ module Screenful
     end
 
     def embed_image(src, label)
+      if _output_relative? && _relative_uri?(src)
+        output_dir = Pathname.new(File.dirname(@io.path))
+        src_path = Pathname.new(src)
+        embed_relative_path = src_path.relative_path_from(output_dir)
+        src = embed_relative_path.to_s
+      end
+
       id = "img_#{@img_id}"
       @img_id += 1
       if @storyboard != ""
@@ -75,19 +82,5 @@ module Screenful
     def image_separator
       %{<span style="display: inline-block; margin-bottom: 140px; width:0; height:0; border-color: transparent transparent transparent #666; border-width: 20px; border-style: solid;"></span>}
     end
-
-    def _relative_uri?(src)
-        uri = URI.parse(src)
-        return false if uri.scheme
-        not Pathname.new(src).absolute?
-      end
-
-
-      def _output_relative?
-        if @io.is_a?(File)
-          path = @io.path
-          _relative_uri?(path)
-        end
-      end
   end
 end
