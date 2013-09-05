@@ -1,10 +1,7 @@
-require 'cucumber/formatter/html'
+require 'calabash/formatters/html'
 
 module Screenful
-  class Formatter < Cucumber::Formatter::Html
-    #include Calabash::Cucumber::Core
-
-
+  class Formatter < Calabash::Formatters::Html
     def initialize(step_mother, path, options)
       super
       @storyboard = ""
@@ -76,7 +73,21 @@ module Screenful
 
     private
     def image_separator
-      %{<span style="display: inline-block; margin-bottom: 130px; width:0; height:0; border-color: transparent transparent transparent #666; border-width: 20px; border-style: solid;"></span>}
+      %{<span style="display: inline-block; margin-bottom: 140px; width:0; height:0; border-color: transparent transparent transparent #666; border-width: 20px; border-style: solid;"></span>}
     end
+
+    def _relative_uri?(src)
+        uri = URI.parse(src)
+        return false if uri.scheme
+        not Pathname.new(src).absolute?
+      end
+
+
+      def _output_relative?
+        if @io.is_a?(File)
+          path = @io.path
+          _relative_uri?(path)
+        end
+      end
   end
 end

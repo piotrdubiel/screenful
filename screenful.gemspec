@@ -8,6 +8,7 @@ Gem::Specification.new do |s|
   s.platform			= Gem::Platform::RUBY
   s.authors				= ["Piotr Dubiel"]
   s.summary				= %q{Screenful is cucumber formatter for calabash that allows intercepting touches}
+  s.add_dependency("calabash-common")
   s.files 				=  ["lib/screenful.rb", 
                       "lib/screenful/formatter.rb",
                       "lib/screenful/version.rb",
