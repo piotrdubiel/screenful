@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Tests Results</title>
+<link href="bootstrap.css" class="rel" rel="stylesheet" />
+</head>
+<body>
+<div class="container-fluid">
+  <% @results.each_index do |i| %>
+    <% if i.even? %>
+      <div class="row-fluid">
+    <% end %>
+
+    <div class="span6">
+      <%= @results[i] %>
+    </div>
+
+    <% if i.odd? %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+</body>
+</html>

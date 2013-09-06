@@ -1,0 +1,16 @@
+<div class="row-fluid">
+  <div class="span12">
+    <h2><%= @device_name %></h2>
+    <div class="progress">
+      <div class="bar bar-success" style="width: <%= passed_percentage %>%"><%= @passed %>/<%= @total %></div>
+      <div class="bar bar-warning" style="width: <%= skipped_percentage %>%"><%= @skipped %>/<%= @total %></div>
+      <div class="bar bar-danger" style="width: <%= failed_percentage %>%"><%= @failed %>/<%= @total %></div>
+    </div>
+
+    <% @scenarios.each do |name, status| %>
+    <div class="alert alert-<%= status %>">
+      <%= name %>
+    </div>
+    <% end %>
+  </div>
+</div>
