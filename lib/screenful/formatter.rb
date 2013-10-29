@@ -1,4 +1,5 @@
 require 'calabash/formatters/html'
+require 'pry'
 
 module Screenful
   class Formatter < Calabash::Formatters::Html
@@ -7,7 +8,7 @@ module Screenful
       @storyboard = ""
       @img_description = ""
     end
-   
+
     def after_features(features)
       print_stats(features)
       @builder << '</div>'
@@ -22,24 +23,18 @@ module Screenful
 
       id = "img_#{@img_id}"
       @img_id += 1
-      if @storyboard != ""
+      unless @storyboard.empty?
         @storyboard << image_separator 
       end
       @storyboard << %{
-        <span style="display: inline-block; margin-right: 10px;">
-          <img id="#{id}" style="height: 300px; display: block;" src="#{src}">
+       <span style="display: inline-block; margin-right: 10px;">
+          <a href="#{src}">
+            <img id="#{id}" style="height: 300px; display: block;" src="#{src}">
+          </a>
           <h2 style="text-align: right;">#{@img_id}</h2>
         </span>
       }
       @img_description << "<span>[see image #{@img_id}]</span>"
-    end
-
-    def after_step(step)
-      if @img_description && @img_description.empty?
-        @builder << @img_description
-        @img_description = ""
-      end
-      super
     end
 
     def after_steps(steps)
@@ -48,6 +43,16 @@ module Screenful
         pre << @storyboard
       end
       @storyboard = ""
+    end
+
+    def build_step(keyword, step_match, status)
+      super
+      @builder.div(:class => 'image_description') do |div|
+        @builder.span do
+          @builder << @img_description
+        end
+      end
+      @img_description = ""
     end
 
     private
