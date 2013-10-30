@@ -28,7 +28,7 @@ module Screenful
       end
       @storyboard << %{
        <span style="display: inline-block; margin-right: 10px;">
-          <a href="#{src}">
+          <a href="#{src}" target="_blank">
             <img id="#{id}" style="height: 300px; display: block;" src="#{src}">
           </a>
           <h2 style="text-align: right;">#{@img_id}</h2>
