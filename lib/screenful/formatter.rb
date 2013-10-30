@@ -1,5 +1,4 @@
 require 'calabash/formatters/html'
-require 'pry'
 
 module Screenful
   class Formatter < Calabash::Formatters::Html
