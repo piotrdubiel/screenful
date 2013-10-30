@@ -1,4 +1,5 @@
-require 'calabash/formatters/html'
+require "calabash/formatters/html"
+require "cgi"
 
 module Screenful
   class Formatter < Calabash::Formatters::Html
@@ -18,7 +19,7 @@ module Screenful
       output_dir = Pathname.new(File.dirname(@io.path))
       src_path = Pathname.new(src)
       embed_relative_path = src_path.relative_path_from(output_dir)
-      src = embed_relative_path.to_s
+      src = CGI.escape(embed_relative_path.to_s)
 
       id = "img_#{@img_id}"
       @img_id += 1
